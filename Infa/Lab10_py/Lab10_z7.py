@@ -7,7 +7,7 @@ def generate(word_list):
         raise ValueError("Недостаточно подходящих слов для генерации пароля.")
     word1, word2 = random.sample(filtered_words, 2)
     password = f"{word1.capitalize()}{word2.capitalize()}"
-    if len(password) < 8 or len(password) > 10:
+    if len(password) < 8 and len(password) < 10:
         raise ValueError("Сгенерированный пароль не соответствует требованиям по длине.")
     return password
 
