@@ -19,21 +19,17 @@ int main() {
     "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
     char *pch; 
-    char max_word[100] = ""; // Массив для хранения слова с максимальным количеством 'a'
-    int max_count = 0;       // Переменная для хранения максимального количества 'a'
+    char max_word[100] = "";
+    int max_count = 0;
     pch = strtok(str, " ,.-\n"); 
     while (pch != NULL) { 
-        int current_count = count_a(pch); // Подсчёт 'a' для текущего слова
+        int current_count = count_a(pch); // Подсчёт a
         if (current_count > max_count) { 
-            max_count = current_count; // Обновление максимального количества
-            strcpy(max_word, pch); // Сохранение слова с максимальным количеством 'a'
+            max_count = current_count; 
+            strcpy(max_word, pch);
         } 
         pch = strtok(NULL, " ,.-"); 
     } 
-    if (max_count > 0) { // Проверка, найдено ли слово с 'a'
-        printf("Слово с максимальным количеством 'a': %s, количество 'a': %dn", max_word, max_count);
-    } else {
-        printf("Не найдено слов с 'a'.n");
-    }   
+    printf("Слово с максимальным количеством 'a': %s, количество 'a': %dn", max_word, max_count);
     return 0; 
 }

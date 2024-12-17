@@ -5,12 +5,15 @@ double determinant2x2(double a, double b, double c, double d) {
     return a * d - b * c;}
 
 double determinant3x3(double a[3][3]) {
-    return a[0][0] * (a[1][1] * a[2][2] - a[1][2] * a[2][1]) -
-           a[0][1] * (a[1][0] * a[2][2] - a[1][2] * a[2][0]) +
-           a[0][2] * (a[1][0] * a[2][1] - a[1][1] * a[2][0]);}
+
+    return a[0][0] * ((a[1][1] * a[2][2]) - (a[1][2] * a[2][1])) -
+           a[0][1] * ((a[1][0] * a[2][2]) - (a[1][2] * a[2][0])) +
+           a[0][2] * ((a[1][0] * a[2][1]) - (a[1][1] * a[2][0]));
+           }
 
 int solve2x2(double a[2][2], double b[2], double x[2]) {
     double det = determinant2x2(a[0][0], a[0][1], a[1][0], a[1][1]);
+    printf("%d \n", det);
     if (det == 0) return 0;
     x[0] = determinant2x2(b[0], a[0][1], b[1], a[1][1]) / det;
     x[1] = determinant2x2(a[0][0], b[0], a[1][0], b[1]) / det;
@@ -18,6 +21,7 @@ int solve2x2(double a[2][2], double b[2], double x[2]) {
 
 int solve3x3(double a[3][3], double b[3], double x[3]) {
     double det = determinant3x3(a);
+    printf("%d \n", det);
     if (det == 0) return 0;
     double a_x[3][3], a_y[3][3], a_z[3][3];
     for (int i = 0; i < 3; i++) {
@@ -38,7 +42,7 @@ int main() {
     printf("Введите размерность системы (2 или 3): ");
     scanf("%d", &n);
     if (n != 2 && n != 3) {
-        printf("Ошибка: поддерживаются только системы 2x2 и 3x3.\n");
+        printf("Поддерживаются только системы 2x2 и 3x3.\n");
         return 1;
     }
     double a[3][3], b[3], x[3];
@@ -56,13 +60,13 @@ int main() {
         if (solve2x2(a, b, x)) {
             printf("Решение СЛАУ 2x2:\nx1 = %f\nx2 = %f\n", x[0], x[1]);
         } else {
-            printf("Система 2x2 не имеет единственного решения.\n");
+            printf("Система не имеет единственного решения.\n");
         }
     } else {
         if (solve3x3(a, b, x)) {
             printf("Решение СЛАУ 3x3:\nx1 = %f\nx2 = %f\nx3 = %f\n", x[0], x[1], x[2]);
         } else {
-            printf("Система 3x3 не имеет единственного решения.\n");
+            printf("Система не имеет единственного решения.\n");
         }
     }
     return 0;

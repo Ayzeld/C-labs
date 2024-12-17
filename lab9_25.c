@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-void Manual(int matrix[][100], int rows, int cols) { // Функция для заполнения матрицы вручную
+void Manual(int matrix[][100], int rows, int cols) { // Заполнение матрицы вручную
     printf("Введите элементы матрицы:\n");
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -11,7 +11,7 @@ void Manual(int matrix[][100], int rows, int cols) { // Функция для з
     }
 }
 
-void Random(int matrix[][100], int rows, int cols) { // Функция для заполнения матрицы случайными числами
+void Random(int matrix[][100], int rows, int cols) { // Заполнение матрицы случайными числами
     srand(time(NULL));
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -20,7 +20,7 @@ void Random(int matrix[][100], int rows, int cols) { // Функция для з
     }
 }
 
-void Sort(int matrix[][100], int rows, int cols) { // Функция для сортировки матрицы в порядке убывания
+void Sort(int matrix[][100], int rows, int cols) { // Сортировка матрицы в порядке убывания
   int temp;
   int arr[rows * cols];
   int k=0;
@@ -77,13 +77,15 @@ int main() {
     }
    for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
+        printf("%d ", matrix[i][j]);
       if ((i < rows/2 && j < cols/2) || (i >= rows/2 && j >= cols/2)) continue;
       if(matrix[i][j] == 0){
         n = 1;
       }
     }
+    printf("\n");
   }
-    printf("Сумма полож. элементов 4 четверти: %d\n", sum);
+    printf("Сумма полож. элементов четверти: %d\n", sum);
     if(n){
         printf("В матрице вне границ квадрата есть нули.\n");
     } else {
