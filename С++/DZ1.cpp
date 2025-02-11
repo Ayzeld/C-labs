@@ -23,7 +23,7 @@ void FillRand(int A[], int n) {
     } 
 } 
 
-// Проверяем контрольную сумму массива
+// Контрольная сумма
 int CheckSum(int A[], int n) { 
     int summ = 0;
     for (int i = 0; i < n; i++) { 
@@ -61,12 +61,14 @@ int main() {
     FillInc(A, n); 
     PrintMas(A, n); 
     std::cout << "Серия: " << RunNumber(A, n) << std::endl; 
+    std::cout << "Контрольная сумма: " << CheckSum(A, n) << std::endl; 
     std::cout << "Убывающий массив: "; 
     FillDec(A, n); 
     PrintMas(A, n); 
     std::cout << "Серия: " << RunNumber(A, n) << std::endl; 
+    std::cout << "Контрольная сумма: " << CheckSum(A, n) << std::endl; 
     std::cout << "Рандомный массив: "; 
-    FillRand(A, n); // Исправлено: теперь заполняем массив случайными числами
+    FillRand(A, n);
     PrintMas(A, n); 
     std::cout << "Серия: " << RunNumber(A, n) << std::endl; 
     std::cout << "Контрольная сумма: " << CheckSum(A, n) << std::endl; 
