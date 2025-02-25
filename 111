@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "Информация о процессоре:"
+grep -m 1 "model name" /proc/cpuinfo
+grep -m 1 "cpu MHz" /proc/cpuinfo
+
+echo "Запуск программы"
+./sort_program
