@@ -8,7 +8,7 @@ struct node {
     struct node *alt;
 };
 
-// Функция для создания нового узла
+// Функция для создания узла
 struct node* createNode(int data) {
     struct node* newNode = (struct node*)malloc(sizeof(struct node));
     newNode->data = data;
@@ -16,7 +16,7 @@ struct node* createNode(int data) {
     return newNode;
 }
 
-// Добавление узла в конец списка
+// Добавление узла в список
 void append(struct node** head, int data) {
     struct node** temp = head;
     while (*temp) temp = &(*temp)->next;
@@ -38,7 +38,7 @@ struct node* createList() {
     return head;
 }
 
-// Навигация по списку
+// Навигация
 void navigateList(struct node* start) {
     struct node* current = start;
     char command;
