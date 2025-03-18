@@ -36,18 +36,20 @@ int CheckSum(int A[], int n) {
 
 // Подсчёт количества серий
 int RunNumber(int A[], int n) {
-    if (n == 0) return 0;
+    if (n <= 1) {
+        return n;
+    }
     int series = 1;
     for (int i = 1; i < n; i++) {
-        if (A[i] < A[i - 1]) {
+        if (A[i] != A[i - 1]) {
             series++;
         }
     }
     return series;
 }
 
-// Сортировка методом прямого включения с подсчётом операций
-void InsertSort(int A[], int n, int &comparisons, int &swaps) {
+// Сортировка вставками
+void InsertSort(int A[], int n, int& comparisons, int& swaps) {
     comparisons = 0;
     swaps = 0;
     for (int i = 1; i < n; i++) {
@@ -59,9 +61,11 @@ void InsertSort(int A[], int n, int &comparisons, int &swaps) {
             swaps++;
             j--;
         }
-        comparisons++; // Сравнение при выходе из цикла
+        comparisons++;
         A[j + 1] = key;
-        swaps++;
+        if (j + 1 != i) {
+            swaps++;
+        }
     }
 }
 
@@ -77,25 +81,40 @@ int main() {
     const int n = 15;
     int A[n];
     int comparisons, swaps;
-    srand(time(0));
+    srand(time(NULL));
 
+    // Возрастающий массив
     cout << "Возрастающий массив: ";
     FillInc(A, n);
     PrintArray(A, n);
     InsertSort(A, n, comparisons, swaps);
+    cout << "Отсортированный массив: ";
+    PrintArray(A, n);
     cout << "Сравнения: " << comparisons << ", Пересылки: " << swaps << endl;
+    cout << "Серия: " << RunNumber(A, n) << endl;
+    cout << "Контрольная сумма: " << CheckSum(A, n) << endl;
 
+    // Убывающий массив
     cout << "Убывающий массив: ";
     FillDec(A, n);
     PrintArray(A, n);
     InsertSort(A, n, comparisons, swaps);
+    cout << "Отсортированный массив: ";
+    PrintArray(A, n);
     cout << "Сравнения: " << comparisons << ", Пересылки: " << swaps << endl;
+    cout << "Серия: " << RunNumber(A, n) << endl;
+    cout << "Контрольная сумма: " << CheckSum(A, n) << endl;
 
+    // Случайный массив
     cout << "Случайный массив: ";
     FillRand(A, n);
     PrintArray(A, n);
     InsertSort(A, n, comparisons, swaps);
+    cout << "Отсортированный массив: ";
+    PrintArray(A, n);
     cout << "Сравнения: " << comparisons << ", Пересылки: " << swaps << endl;
+    cout << "Серия: " << RunNumber(A, n) << endl;
+    cout << "Контрольная сумма: " << CheckSum(A, n) << endl;
 
     return 0;
 }
