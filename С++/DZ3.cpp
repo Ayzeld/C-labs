@@ -34,10 +34,10 @@ int CheckSum(int A[], int n) {
 
 // Считаем серии
 int RunNumber(int A[], int n) {
-    if (n == 0) return 0;
+    if (n <= 1) return n; 
     int series = 1;
     for (int i = 1; i < n; i++) {
-        if (A[i] < A[i - 1]) {
+        if (A[i] != A[i - 1]) { 
             series++;
         }
     }
@@ -52,33 +52,32 @@ void PrintMas(int A[], int n) {
     std::cout << std::endl;
 }
 
-// Шейкерная сортировка
+// сортировка ShakerSort
 void ShakerSort(int A[], int n, int& M, int& C) {
     int left = 0, right = n - 1;
     bool swapped = true;
-    M = 0; // Количество пересылок
-    C = 0; // Количество сравнений
-
-    while (swapped) {
+    M = 0;
+    C = 0;
+    while (left < right && swapped) {
         swapped = false;
-
         // Проход слева направо
         for (int i = left; i < right; i++) {
             C++;
             if (A[i] > A[i + 1]) {
                 std::swap(A[i], A[i + 1]);
-                M += 3; // 3 пересылки (swap)
+                M += 3;
                 swapped = true;
             }
         }
         right--;
-
+        if (!swapped) break;
         // Проход справа налево
+        swapped = false;
         for (int i = right; i > left; i--) {
             C++;
             if (A[i] < A[i - 1]) {
                 std::swap(A[i], A[i - 1]);
-                M += 3; // 3 пересылки (swap)
+                M += 3;
                 swapped = true;
             }
         }
@@ -89,7 +88,7 @@ void ShakerSort(int A[], int n, int& M, int& C) {
 int main() {
     const int n = 15;
     int A[n];
-    int M, C; // Переменные для подсчёта пересылок и сравнений
+    int M, C; // Переменные пересылок и сравнений
     srand(static_cast<unsigned>(time(0))); // Инициализируем генератор
 
     // Возрастающий массив
