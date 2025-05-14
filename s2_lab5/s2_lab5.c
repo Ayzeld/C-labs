@@ -25,11 +25,9 @@ void searchInFile(const char *filename) {
         perror("Ошибка при открытии файла");
         return;
     }
-
     int choice;
     char input[10];
     bool running = true;
-
     while (running) {
         printf("\nВыберите поле для поиска:\n"
                "1 - Фамилия и инициалы\n"
@@ -42,11 +40,9 @@ void searchInFile(const char *filename) {
             printf("Неверный ввод. Попробуйте снова.\n");
             continue;
         }
-
         Student s;
         int found = 0;
         rewind(fp);
-
         switch (choice) {
             case 1: {
                 char query[50];
@@ -54,7 +50,6 @@ void searchInFile(const char *filename) {
                 // Читаем ФИО как строку до группы, группу и оценки
                 while (fscanf(fp, "%49[^0-9] %19s %d %d %d", 
                             s.name, s.group, &s.grades[0], &s.grades[1], &s.grades[2]) == 5) {
-                    // Удаляем возможные пробелы в конце ФИО
                     s.name[strcspn(s.name, " \t\n")] = '\0';
                     if (strcmp(s.name, query) == 0) {
                         found = 1;
@@ -80,7 +75,7 @@ void searchInFile(const char *filename) {
                 int grade;
                 printf("Введите оценку: ");
                 scanf("%d", &grade);
-                while (getchar() != '\n'); // Очистка буфера
+                while (getchar() != '\n'); 
                 while (fscanf(fp, "%49[^0-9] %19s %d %d %d", 
                             s.name, s.group, &s.grades[0], &s.grades[1], &s.grades[2]) == 5) {
                     s.name[strcspn(s.name, " \t\n")] = '\0';
@@ -101,7 +96,6 @@ void searchInFile(const char *filename) {
             default:
                 printf("Неверный выбор. Попробуйте снова.\n");
         }
-
         if (!found && choice >= 1 && choice <= 3) {
             printf("Ничего не найдено.\n");
         }
